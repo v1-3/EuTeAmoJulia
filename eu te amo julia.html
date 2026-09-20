@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contagem Regressiva até o Amor da Minha Vida</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;1,300&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        velvet: '#120710',
+                        roseGold: '#E8B4B8',
+                        deepRose: '#881337',
+                        softPink: '#FCE7F3',
+                    },
+                    fontFamily: {
+                        romantic: ['"Great Vibes"', 'cursive'],
+                        serifHeader: ['"Playfair Display"', 'serif'],
+                        sansBody: ['"Montserrat"', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 3s infinite alternate',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        },
+                        glow: {
+                            '0%': { filter: 'drop-shadow(0 0 10px rgba(232, 180, 184, 0.4))' },
+                            '100%': { filter: 'drop-shadow(0 0 25px rgba(225, 29, 72, 0.8))' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #120710;
+            color: #FCE7F3;
+            overflow-x: hidden;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .ambient-bg {
+            background: radial-gradient(circle at 50% 30%, rgba(136, 19, 55, 0.25) 0%, rgba(18, 7, 16, 0.95) 70%);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(232, 180, 184, 0.18);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7),
+                        inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(232, 180, 184, 0.4);
+            box-shadow: 0 15px 35px -10px rgba(225, 29, 72, 0.3),
+                        inset 0 1px 2px rgba(255, 255, 255, 0.2);
+        }
+
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .content-layer {
+            position: relative;
+            z-index: 10;
+        }
+
+        .text-glow {
+            text-shadow: 0 0 15px rgba(232, 180, 184, 0.6);
+        }
+        
+        /* Section specific glass backgrounds */
+        .glass-purple {
+            background: linear-gradient(135deg, rgba(88, 28, 135, 0.15), rgba(0,0,0,0));
+            border-color: rgba(168, 85, 247, 0.3);
+        }
+        .glass-purple:hover { border-color: rgba(168, 85, 247, 0.6); box-shadow: 0 10px 30px -10px rgba(168, 85, 247, 0.4); }
+
+        .glass-blue {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.15), rgba(0,0,0,0));
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+        .glass-blue:hover { border-color: rgba(59, 130, 246, 0.6); box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.4); }
+
+        .glass-red {
+            background: linear-gradient(135deg, rgba(153, 27, 27, 0.15), rgba(0,0,0,0));
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+        .glass-red:hover { border-color: rgba(239, 68, 68, 0.6); box-shadow: 0 10px 30px -10px rgba(239, 68, 68, 0.4); }
+    </style>
+</head>
+<body class="min-h-full flex flex-col justify-between selection:bg-rose-500 selection:text-white relative">
+
+    <canvas id="particle-canvas"></canvas>
+    <div class="ambient-bg fixed inset-0 pointer-events-none z-0"></div>
+
+    <header class="content-layer w-full p-6 flex justify-between items-center max-w-6xl mx-auto">
+        <div class="flex items-center gap-2">
+            <i class="fa-solid font-romantic text-roseGold text-3xl animate-pulse-slow">♥</i>
+            <span class="font-serifHeader text-xs sm:text-sm tracking-widest uppercase text-roseGold/80">2030 • O Reencontro</span>
+        </div>
+
+        <button id="music-toggle" class="glass-card px-4 py-2 rounded-full flex items-center gap-2.5 text-xs sm:text-sm text-roseGold hover:text-white transition-all duration-300 group" title="Alternar Melodia Esperançosa">
+            <i id="music-icon" class="fa-solid fa-music text-rose-400 group-hover:scale-110 transition-transform"></i>
+            <span id="music-label" class="hidden sm:inline">Melodia Esperançosa</span>
+        </button>
+    </header>
+
+    <main class="content-layer flex-1 flex flex-col items-center justify-center px-4 py-8 text-center max-w-5xl mx-auto w-full">
+        
+        <div class="mb-8 space-y-3 animate-float">
+            <p class="font-romantic text-3xl sm:text-5xl md:text-6xl text-roseGold text-glow">
+                Esperando por você...
+            </p>
+            <h1 class="font-serifHeader text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
+                Contagem Regressiva até o<br/>
+                <span class="bg-gradient-to-r from-pink-300 via-rose-400 to-rose-600 bg-clip-text text-transparent text-glow">
+                    Amor da Minha Vida
+                </span>
+            </h1>
+            <p class="text-xs sm:text-sm text-roseGold/70 max-w-md mx-auto font-light tracking-wider uppercase pt-2">
+                Destino agendado para <span class="text-rose-300 font-semibold">27 de Janeiro de 2030</span>
+            </p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 md:gap-6 w-full max-w-5xl my-6">
+            <div class="glass-card rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center group">
+                <span id="years" class="font-serifHeader text-3xl sm:text-5xl md:text-6xl font-bold text-white group-hover:text-rose-300 transition-colors">00</span>
+                <span class="text-xs sm:text-sm uppercase tracking-widest text-roseGold/80 mt-2 font-medium">Anos</span>
+            </div>
+            <div class="glass-card rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center group">
+                <span id="months" class="font-serifHeader text-3xl sm:text-5xl md:text-6xl font-bold text-white group-hover:text-rose-300 transition-colors">00</span>
+                <span class="text-xs sm:text-sm uppercase tracking-widest text-roseGold/80 mt-2 font-medium">Meses</span>
+            </div>
+            <div class="glass-card rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center group">
+                <span id="days" class="font-serifHeader text-3xl sm:text-5xl md:text-6xl font-bold text-white group-hover:text-rose-300 transition-colors">00</span>
+                <span class="text-xs sm:text-sm uppercase tracking-widest text-roseGold/80 mt-2 font-medium">Dias</span>
+            </div>
+            <div class="glass-card rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center group">
+                <span id="hours" class="font-serifHeader text-3xl sm:text-5xl md:text-6xl font-bold text-white group-hover:text-rose-300 transition-colors">00</span>
+                <span class="text-xs sm:text-sm uppercase tracking-widest text-roseGold/80 mt-2 font-medium">Horas</span>
+            </div>
+            <div class="glass-card rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center group">
+                <span id="minutes" class="font-serifHeader text-3xl sm:text-5xl md:text-6xl font-bold text-white group-hover:text-rose-300 transition-colors">00</span>
+                <span class="text-xs sm:text-sm uppercase tracking-widest text-roseGold/80 mt-2 font-medium">Minutos</span>
+            </div>
+            <div class="glass-card rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center group">
+                <span id="seconds" class="font-serifHeader text-3xl sm:text-5xl md:text-6xl font-bold text-rose-400 group-hover:text-rose-300 transition-colors">00</span>
+                <span class="text-xs sm:text-sm uppercase tracking-widest text-roseGold/80 mt-2 font-medium">Segundos</span>
+            </div>
+        </div>
+
+        <div class="mt-8 max-w-xl w-full glass-card rounded-2xl p-6 relative overflow-hidden">
+            <i class="fa-solid fa-quote-left text-3xl text-rose-500/20 absolute top-3 left-4"></i>
+            <div class="relative z-10 space-y-3">
+                <p id="quote-text" class="text-sm sm:text-base italic text-pink-100/90 font-light leading-relaxed min-h-[3rem] flex items-center justify-center transition-opacity duration-300">
+                    "O tempo é muito lento para os que esperam, mas para os que amam, o tempo é eternidade."
+                </p>
+                <p id="quote-author" class="text-xs font-semibold text-roseGold tracking-wider uppercase transition-opacity duration-300">— Henry Van Dyke</p>
+            </div>
+            <div class="flex justify-center items-center gap-3 mt-4 pt-4 border-t border-roseGold/10">
+                <button id="prev-quote" class="p-2 text-roseGold/60 hover:text-white transition-colors"><i class="fa-solid fa-chevron-left text-xs"></i></button>
+                <button id="heart-burst-btn" class="glass-card hover:bg-rose-600/30 text-rose-300 px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-300 flex items-center gap-1.5 active:scale-95">
+                    <i class="fa-solid fa-heart text-rose-500"></i> Enviar Amor
+                </button>
+                <button id="next-quote" class="p-2 text-roseGold/60 hover:text-white transition-colors"><i class="fa-solid fa-chevron-right text-xs"></i></button>
+            </div>
+        </div>
+
+        <div class="w-full max-w-2xl mt-8 space-y-2">
+            <div class="flex justify-between text-xs text-roseGold/70">
+                <span>Início da Jornada</span>
+                <span id="progress-percentage" class="text-rose-300 font-semibold">0%</span>
+                <span>27/01/2030</span>
+            </div>
+            <div class="w-full bg-white/5 rounded-full h-2 p-0.5 border border-roseGold/20 overflow-hidden">
+                <div id="progress-bar" class="bg-gradient-to-r from-rose-700 via-pink-500 to-rose-300 h-full rounded-full transition-all duration-1000 w-0"></div>
+            </div>
+        </div>
+
+        <div class="w-full max-w-4xl mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Section 1: Couple's Anniversary -->
+            <div class="glass-card glass-purple rounded-2xl p-6 flex flex-col items-center justify-center group text-center">
+                <div class="bg-purple-900/40 p-3 rounded-full mb-4 group-hover:scale-110 transition-transform shadow-[0_0_15px_rgba(168,85,247,0.3)]">
+                    <i class="fa-solid fa-heart text-purple-300 text-2xl"></i>
+                </div>
+                <h3 class="font-serifHeader text-lg sm:text-xl text-purple-200 font-bold mb-2">Nosso Aniversário de Namoro</h3>
+                <h4 class="text-sm font-semibold text-purple-300 mb-2 uppercase tracking-wide">13 de Setembro</h4>
+                <p class="text-xs sm:text-sm text-purple-200/70 leading-relaxed">
+                    Celebrando o encontro de duas almas, o dia em que nossa história de amor começou a ser escrita nas estrelas.
+                </p>
+            </div>
+
+            <!-- Section 2: Victor's Birthday -->
+            <div class="glass-card glass-blue rounded-2xl p-6 flex flex-col items-center justify-center group text-center">
+                <div class="bg-blue-900/40 p-3 rounded-full mb-4 group-hover:scale-110 transition-transform shadow-[0_0_15px_rgba(59,130,246,0.3)]">
+                    <i class="fa-solid fa-cake-candles text-blue-300 text-2xl"></i>
+                </div>
+                <h3 class="font-serifHeader text-lg sm:text-xl text-blue-200 font-bold mb-2">Aniversário do Victor</h3>
+                <h4 class="text-sm font-semibold text-blue-300 mb-2 uppercase tracking-wide">17 de Abril</h4>
+                <p class="text-xs sm:text-sm text-blue-200/70 leading-relaxed">
+                    O dia em que o mundo ficou mais brilhante. Celebrando a vida, os sonhos e o seu sorriso inesquecível.
+                </p>
+            </div>
+
+            <!-- Section 3: Partner's Birthday -->
+            <div class="glass-card glass-red rounded-2xl p-6 flex flex-col items-center justify-center group text-center">
+                <div class="bg-red-900/40 p-3 rounded-full mb-4 group-hover:scale-110 transition-transform shadow-[0_0_15px_rgba(239,68,68,0.3)]">
+                    <i class="fa-solid fa-gift text-red-300 text-2xl"></i>
+                </div>
+                <h3 class="font-serifHeader text-lg sm:text-xl text-red-200 font-bold mb-2">Aniversário da Julia</h3>
+                <h4 class="text-sm font-semibold text-red-300 mb-2 uppercase tracking-wide">27 de Janeiro</h4>
+                <p class="text-xs sm:text-sm text-red-200/70 leading-relaxed">
+                    A data mais doce do calendário. Um brinde à pessoa que transforma todos os meus dias em poesia e paixão.
+                </p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="content-layer w-full p-6 text-center text-xs text-roseGold/50 mt-8">
+        <p class="flex items-center justify-center gap-1">
+            Feito com <i class="fa-solid fa-heart text-rose-500 text-xs animate-bounce"></i> para a pessoa mais especial do universo
+        </p>
+    </footer>
+
+    <script>
+        // Setup dates
+        const targetDate = new Date('January 27, 2030 00:00:00').getTime();
+        const startDate = new Date('January 1, 2024 00:00:00').getTime();
+
+        const quotes = [
+            { text: "O tempo é muito lento para os que esperam, muito rápido para os que têm medo, mas para os que amam, o tempo é eternidade.", author: "Henry Van Dyke" },
+            { text: "Eu te escolheria. Centenas de vidas, em qualquer universo, em qualquer versão da realidade, eu encontraria você.", author: "Kiersten White" },
+            { text: "O amor não consiste em olhar um para o outro, mas em olhar juntos na mesma direção.", author: "Antoine de Saint-Exupéry" },
+            { text: "Até 27 de Janeiro de 2030 e para todo o sempre, cada segundo me aproxima do seu abraço.", author: "Declaração de Amor" }
+        ];
+
+        let currentQuoteIndex = 0;
+
+        // UI elements
+        const els = {
+            years: document.getElementById('years'),
+            months: document.getElementById('months'),
+            days: document.getElementById('days'),
+            hours: document.getElementById('hours'),
+            minutes: document.getElementById('minutes'),
+            seconds: document.getElementById('seconds'),
+            progressBar: document.getElementById('progress-bar'),
+            progressPct: document.getElementById('progress-percentage'),
+            quoteText: document.getElementById('quote-text'),
+            quoteAuthor: document.getElementById('quote-author')
+        };
+
+        function updateCountdown() {
+            const now = new Date();
+            const target = new Date(targetDate);
+            const distance = target.getTime() - now.getTime();
+
+            if (distance < 0) {
+                ['years','months','days','hours','minutes','seconds'].forEach(k => els[k].innerText = "00");
+                els.progressBar.style.width = "100%";
+                els.progressPct.innerText = "100%";
+                return;
+            }
+
+            // Calculate precise calendar differences
+            let years = target.getFullYear() - now.getFullYear();
+            let months = target.getMonth() - now.getMonth();
+            let days = target.getDate() - now.getDate();
+            let hours = target.getHours() - now.getHours();
+            let minutes = target.getMinutes() - now.getMinutes();
+            let seconds = target.getSeconds() - now.getSeconds();
+
+            // Borrow from higher units if negative
+            if (seconds < 0) { seconds += 60; minutes--; }
+            if (minutes < 0) { minutes += 60; hours--; }
+            if (hours < 0) { hours += 24; days--; }
+            if (days < 0) {
+                const prevMonth = new Date(target.getFullYear(), target.getMonth(), 0);
+                days += prevMonth.getDate();
+                months--;
+            }
+            if (months < 0) { months += 12; years--; }
+
+            els.years.innerText = String(years).padStart(2, '0');
+            els.months.innerText = String(months).padStart(2, '0');
+            els.days.innerText = String(days).padStart(2, '0');
+            els.hours.innerText = String(hours).padStart(2, '0');
+            els.minutes.innerText = String(minutes).padStart(2, '0');
+            els.seconds.innerText = String(seconds).padStart(2, '0');
+
+            const elapsed = now.getTime() - startDate;
+            const pct = Math.min(Math.max((elapsed / (targetDate - startDate)) * 100, 0), 100).toFixed(1);
+            els.progressBar.style.width = `${pct}%`;
+            els.progressPct.innerText = `${pct}%`;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Quote logic
+        function displayQuote(index) {
+            els.quoteText.classList.add('opacity-0');
+            els.quoteAuthor.classList.add('opacity-0');
+            setTimeout(() => {
+                els.quoteText.innerText = `"${quotes[index].text}"`;
+                els.quoteAuthor.innerText = `— ${quotes[index].author}`;
+                els.quoteText.classList.remove('opacity-0');
+                els.quoteAuthor.classList.remove('opacity-0');
+            }, 300);
+        }
+
+        document.getElementById('prev-quote').addEventListener('click', () => {
+            currentQuoteIndex = (currentQuoteIndex - 1 + quotes.length) % quotes.length;
+            displayQuote(currentQuoteIndex);
+        });
+        document.getElementById('next-quote').addEventListener('click', () => {
+            currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+            displayQuote(currentQuoteIndex);
+        });
+        setInterval(() => {
+            currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+            displayQuote(currentQuoteIndex);
+        }, 12000);
+
+        // Canvas Particles
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        class HeartParticle {
+            constructor(x, y, isBurst = false) {
+                this.x = x || Math.random() * width;
+                this.y = y || height + Math.random() * 20;
+                this.size = Math.random() * (isBurst ? 18 : 12) + (isBurst ? 8 : 4);
+                this.speedY = isBurst ? (Math.random() * -5 - 2) : (Math.random() * -1.2 - 0.3);
+                this.speedX = isBurst ? (Math.random() * 6 - 3) : (Math.random() * 1 - 0.5);
+                this.opacity = isBurst ? 1 : Math.random() * 0.6 + 0.2;
+                this.fadeRate = isBurst ? 0.015 : 0.002;
+                this.color = `hsla(${Math.random() * 20 + 340}, 85%, ${Math.random() * 20 + 65}%, ${this.opacity})`;
+                this.rotation = Math.random() * Math.PI * 2;
+                this.rotationSpeed = (Math.random() - 0.5) * 0.03;
+            }
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation);
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                const top = this.size * 0.3;
+                ctx.moveTo(0, top);
+                ctx.bezierCurveTo(-this.size / 2, -top, -this.size, this.size / 3, 0, this.size);
+                ctx.bezierCurveTo(this.size, this.size / 3, this.size / 2, -top, 0, top);
+                ctx.closePath();
+                ctx.fill();
+                ctx.restore();
+            }
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                this.rotation += this.rotationSpeed;
+                this.opacity -= this.fadeRate;
+                return !(this.opacity <= 0 || this.y < -30);
+            }
+        }
+
+        let particles = [];
+        for (let i = 0; i < 35; i++) particles.push(new HeartParticle());
+
+        function createHeartBurst(x, y, count = 20) {
+            for (let i = 0; i < count; i++) particles.push(new HeartParticle(x, y, true));
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, width, height);
+            if (Math.random() < 0.1 && particles.length < 70) particles.push(new HeartParticle());
+            for (let i = particles.length - 1; i >= 0; i--) {
+                particles[i].draw();
+                if (!particles[i].update()) particles.splice(i, 1);
+            }
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        window.addEventListener('click', (e) => {
+            if (e.target.closest('button') || e.target.closest('a')) return;
+            createHeartBurst(e.clientX, e.clientY, 15);
+        });
+        document.getElementById('heart-burst-btn').addEventListener('click', (e) => {
+            const rect = e.target.getBoundingClientRect();
+            createHeartBurst(rect.left + rect.width / 2, rect.top, 25);
+        });
+
+        let audioCtx = null;
+        let isPlayingMusic = false;
+        let songTimer = null;
+
+        const musicBtn = document.getElementById('music-toggle');
+        const musicIcon = document.getElementById('music-icon');
+        const musicLabel = document.getElementById('music-label');
+
+        function getAudioContext() {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            return audioCtx;
+        }
+
+        const N = {
+            REST: 0,
+            G3: 196.00, A3: 220.00, B3: 246.94, C4: 261.63, D4: 293.66, E4: 329.63, Fs4: 369.99,
+            G4: 392.00, A4: 440.00, B4: 493.88, C5: 523.25, D5: 587.33, E5: 659.25, Fs5: 739.99, G5: 783.99, A5: 880.00
+        };
+
+        const STEP_TIME = 0.28; // Bright, flowing tempo
+
+        // Hopeful Melody (Uplifting Arpeggios)
+        const hopefulMelody = [
+            // G major
+            { n: N.G4, d: 2 }, { n: N.B4, d: 2 }, { n: N.D5, d: 2 }, { n: N.G5, d: 2 },
+            // C major
+            { n: N.G4, d: 2 }, { n: N.C5, d: 2 }, { n: N.E5, d: 2 }, { n: N.G5, d: 2 },
+            // E minor
+            { n: N.G4, d: 2 }, { n: N.B4, d: 2 }, { n: N.E5, d: 2 }, { n: N.G5, d: 2 },
+            // D major
+            { n: N.Fs4, d: 2 }, { n: N.A4, d: 2 }, { n: N.D5, d: 2 }, { n: N.Fs5, d: 2 },
+            
+            // Second phrase (variation)
+            { n: N.G4, d: 2 }, { n: N.B4, d: 2 }, { n: N.D5, d: 2 }, { n: N.A5, d: 2 },
+            { n: N.G5, d: 4 }, { n: N.E5, d: 4 },
+            { n: N.D5, d: 4 }, { n: N.B4, d: 4 },
+            { n: N.A4, d: 8 }
+        ];
+
+        // Soft Ambient Pad (Major chord roots)
+        const hopefulBass = [
+            { n: N.G3, d: 8 }, { n: N.C4, d: 8 },
+            { n: N.E4, d: 8 }, { n: N.D4, d: 8 },
+            { n: N.G3, d: 8 }, { n: N.C4, d: 8 },
+            { n: N.E4, d: 8 }, { n: N.D4, d: 8 }
+        ];
+
+        // Acoustic Synth Function (Piano/Strings hybrid)
+        function playAcousticNote(freq, startTime, duration, vol = 0.2, isBass = false) {
+            if (!freq || freq === 0) return;
+            const ctx = getAudioContext();
+
+            // Two oscillators for a richer sound
+            const osc1 = ctx.createOscillator();
+            const osc2 = ctx.createOscillator();
+            const gainNode = ctx.createGain();
+
+            osc1.type = isBass ? 'triangle' : 'sine';
+            osc2.type = isBass ? 'sine' : 'triangle';
+
+            // Slight detune for warmth
+            osc1.frequency.setValueAtTime(freq, startTime);
+            osc2.frequency.setValueAtTime(freq * 1.002, startTime); 
+
+            // Envelope (Attack, Sustain, Long Release like Reverb/Piano Pedal)
+            gainNode.gain.setValueAtTime(0, startTime);
+            gainNode.gain.linearRampToValueAtTime(vol, startTime + 0.05);
+            gainNode.gain.setValueAtTime(vol * 0.8, startTime + duration - 0.1);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, startTime + duration + 1.5); 
+
+            osc1.connect(gainNode);
+            osc2.connect(gainNode);
+            gainNode.connect(ctx.destination);
+
+            osc1.start(startTime);
+            osc2.start(startTime);
+            osc1.stop(startTime + duration + 1.5);
+            osc2.stop(startTime + duration + 1.5);
+        }
+
+        function startHopefulLoop() {
+            const ctx = getAudioContext();
+            let startBaseTime = ctx.currentTime + 0.1;
+
+            let melodyTime = startBaseTime;
+            hopefulMelody.forEach((item) => {
+                const duration = item.d * STEP_TIME;
+                // Add tiny expressive delay/rubato randomly to feel human
+                playAcousticNote(item.n, melodyTime + (Math.random() * 0.015), duration, 0.15, false);
+                melodyTime += duration;
+            });
+
+            let bassTime = startBaseTime;
+            hopefulBass.forEach((item) => {
+                const duration = item.d * STEP_TIME;
+                playAcousticNote(item.n, bassTime, duration, 0.12, true);
+                bassTime += duration;
+            });
+
+            const totalLoopTime = (melodyTime - startBaseTime) * 1000;
+            if (isPlayingMusic) {
+                songTimer = setTimeout(() => {
+                    if (isPlayingMusic) startHopefulLoop();
+                }, Math.max(totalLoopTime + 500, 1000));
+            }
+        }
+
+        function stopMusic() {
+            isPlayingMusic = false;
+            if (songTimer) clearTimeout(songTimer);
+        }
+
+        function startMusicWithUI() {
+            if (isPlayingMusic) return;
+            isPlayingMusic = true;
+            startHopefulLoop();
+            musicIcon.className = "fa-solid fa-compact-disc text-rose-400 animate-spin";
+            musicLabel.innerText = "Pausar Melodia";
+        }
+
+        function toggleMusic() {
+            if (isPlayingMusic) {
+                stopMusic();
+                musicIcon.className = "fa-solid fa-music text-rose-400";
+                musicLabel.innerText = "Melodia Esperançosa";
+            } else {
+                startMusicWithUI();
+            }
+        }
+
+        musicBtn.addEventListener('click', toggleMusic);
+
+        // Autoplay logic - Attempt immediately on load
+        window.addEventListener('load', () => {
+            const ctx = getAudioContext();
+            
+            // Attempt to start immediately
+            startMusicWithUI();
+            
+            // Setup fallback for browser autoplay policies
+            setupInteractionListener();
+        });
+
+        function setupInteractionListener() {
+            const start = () => {
+                if (!isPlayingMusic || getAudioContext().state === 'suspended') {
+                    getAudioContext().resume();
+                    startMusicWithUI();
+                }
+                // Remove listeners once interacted
+                ['click', 'touchstart', 'keydown', 'scroll'].forEach(evt => window.removeEventListener(evt, start));
+            };
+            // Add passive listeners for first interaction
+            ['click', 'touchstart', 'keydown', 'scroll'].forEach(evt => window.addEventListener(evt, start, { passive: true }));
+        }
+    </script>
+</body>
+</html>
