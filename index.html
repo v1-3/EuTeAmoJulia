@@ -94,7 +94,6 @@
             text-shadow: 0 0 15px rgba(232, 180, 184, 0.6);
         }
         
-        /* Section specific glass backgrounds */
         .glass-purple {
             background: linear-gradient(135deg, rgba(88, 28, 135, 0.15), rgba(0,0,0,0));
             border-color: rgba(168, 85, 247, 0.3);
@@ -131,126 +130,196 @@
         </button>
     </header>
 
-    <main class="content-layer flex-1 flex flex-col items-center justify-center px-4 py-8 text-center max-w-5xl mx-auto w-full">
+    <main class="content-layer flex-1 flex flex-col items-center justify-center px-4 py-8 text-center max-w-5xl mx-auto w-full space-y-16">
         
-        <div class="mb-8 space-y-3 animate-float">
-            <p class="font-romantic text-3xl sm:text-5xl md:text-6xl text-roseGold text-glow">
-                Esperando por você...
-            </p>
-            <h1 class="font-serifHeader text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
-                Contagem Regressiva até o<br/>
-                <span class="bg-gradient-to-r from-pink-300 via-rose-400 to-rose-600 bg-clip-text text-transparent text-glow">
-                    Amor da Minha Vida
-                </span>
-            </h1>
-            <p class="text-xs sm:text-sm text-roseGold/70 max-w-md mx-auto font-light tracking-wider uppercase pt-2">
-                Destino agendado para <span class="text-rose-300 font-semibold">27 de Janeiro de 2030</span>
-            </p>
-        </div>
-
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 md:gap-6 w-full max-w-5xl my-6">
-            <div class="glass-card rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center group">
-                <span id="years" class="font-serifHeader text-3xl sm:text-5xl md:text-6xl font-bold text-white group-hover:text-rose-300 transition-colors">00</span>
-                <span class="text-xs sm:text-sm uppercase tracking-widest text-roseGold/80 mt-2 font-medium">Anos</span>
-            </div>
-            <div class="glass-card rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center group">
-                <span id="months" class="font-serifHeader text-3xl sm:text-5xl md:text-6xl font-bold text-white group-hover:text-rose-300 transition-colors">00</span>
-                <span class="text-xs sm:text-sm uppercase tracking-widest text-roseGold/80 mt-2 font-medium">Meses</span>
-            </div>
-            <div class="glass-card rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center group">
-                <span id="days" class="font-serifHeader text-3xl sm:text-5xl md:text-6xl font-bold text-white group-hover:text-rose-300 transition-colors">00</span>
-                <span class="text-xs sm:text-sm uppercase tracking-widest text-roseGold/80 mt-2 font-medium">Dias</span>
-            </div>
-            <div class="glass-card rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center group">
-                <span id="hours" class="font-serifHeader text-3xl sm:text-5xl md:text-6xl font-bold text-white group-hover:text-rose-300 transition-colors">00</span>
-                <span class="text-xs sm:text-sm uppercase tracking-widest text-roseGold/80 mt-2 font-medium">Horas</span>
-            </div>
-            <div class="glass-card rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center group">
-                <span id="minutes" class="font-serifHeader text-3xl sm:text-5xl md:text-6xl font-bold text-white group-hover:text-rose-300 transition-colors">00</span>
-                <span class="text-xs sm:text-sm uppercase tracking-widest text-roseGold/80 mt-2 font-medium">Minutos</span>
-            </div>
-            <div class="glass-card rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center group">
-                <span id="seconds" class="font-serifHeader text-3xl sm:text-5xl md:text-6xl font-bold text-rose-400 group-hover:text-rose-300 transition-colors">00</span>
-                <span class="text-xs sm:text-sm uppercase tracking-widest text-roseGold/80 mt-2 font-medium">Segundos</span>
-            </div>
-        </div>
-
-        <div class="mt-8 max-w-xl w-full glass-card rounded-2xl p-6 relative overflow-hidden">
-            <i class="fa-solid fa-quote-left text-3xl text-rose-500/20 absolute top-3 left-4"></i>
-            <div class="relative z-10 space-y-3">
-                <p id="quote-text" class="text-sm sm:text-base italic text-pink-100/90 font-light leading-relaxed min-h-[3rem] flex items-center justify-center transition-opacity duration-300">
-                    "O tempo é muito lento para os que esperam, mas para os que amam, o tempo é eternidade."
+        <!-- MAIN COUNTDOWN SECTION -->
+        <section class="w-full flex flex-col items-center">
+            <div class="mb-8 space-y-3 animate-float">
+                <p class="font-romantic text-3xl sm:text-5xl md:text-6xl text-roseGold text-glow">
+                    Esperando por você Julia...
                 </p>
-                <p id="quote-author" class="text-xs font-semibold text-roseGold tracking-wider uppercase transition-opacity duration-300">— Henry Van Dyke</p>
+                <h1 class="font-serifHeader text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
+                    Contagem Regressiva até o<br/>
+                    <span class="bg-gradient-to-r from-pink-300 via-rose-400 to-rose-600 bg-clip-text text-transparent text-glow">
+                        Amor da Minha Vida
+                    </span>
+                </h1>
+                <p class="text-xs sm:text-sm text-roseGold/70 max-w-md mx-auto font-light tracking-wider uppercase pt-2">
+                    Destino agendado para <span class="text-rose-300 font-semibold">27 de Janeiro de 2030</span>
+                </p>
             </div>
-            <div class="flex justify-center items-center gap-3 mt-4 pt-4 border-t border-roseGold/10">
-                <button id="prev-quote" class="p-2 text-roseGold/60 hover:text-white transition-colors"><i class="fa-solid fa-chevron-left text-xs"></i></button>
-                <button id="heart-burst-btn" class="glass-card hover:bg-rose-600/30 text-rose-300 px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-300 flex items-center gap-1.5 active:scale-95">
-                    <i class="fa-solid fa-heart text-rose-500"></i> Enviar Amor
-                </button>
-                <button id="next-quote" class="p-2 text-roseGold/60 hover:text-white transition-colors"><i class="fa-solid fa-chevron-right text-xs"></i></button>
-            </div>
-        </div>
 
-        <div class="w-full max-w-2xl mt-8 space-y-2">
-            <div class="flex justify-between text-xs text-roseGold/70">
-                <span>Início da Jornada</span>
-                <span id="progress-percentage" class="text-rose-300 font-semibold">0%</span>
-                <span>27/01/2030</span>
-            </div>
-            <div class="w-full bg-white/5 rounded-full h-2 p-0.5 border border-roseGold/20 overflow-hidden">
-                <div id="progress-bar" class="bg-gradient-to-r from-rose-700 via-pink-500 to-rose-300 h-full rounded-full transition-all duration-1000 w-0"></div>
-            </div>
-        </div>
-
-        <div class="w-full max-w-4xl mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Section 1: Couple's Anniversary -->
-            <div class="glass-card glass-purple rounded-2xl p-6 flex flex-col items-center justify-center group text-center">
-                <div class="bg-purple-900/40 p-3 rounded-full mb-4 group-hover:scale-110 transition-transform shadow-[0_0_15px_rgba(168,85,247,0.3)]">
-                    <i class="fa-solid fa-heart text-purple-300 text-2xl"></i>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 md:gap-6 w-full max-w-5xl my-6">
+                <div class="glass-card rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center group">
+                    <span id="years" class="font-serifHeader text-3xl sm:text-5xl md:text-6xl font-bold text-white group-hover:text-rose-300 transition-colors">00</span>
+                    <span class="text-xs sm:text-sm uppercase tracking-widest text-roseGold/80 mt-2 font-medium">Anos</span>
                 </div>
-                <h3 class="font-serifHeader text-lg sm:text-xl text-purple-200 font-bold mb-2">Nosso Aniversário de Namoro</h3>
-                <h4 class="text-sm font-semibold text-purple-300 mb-2 uppercase tracking-wide">13 de Setembro</h4>
-                <p class="text-xs sm:text-sm text-purple-200/70 leading-relaxed">
-                    Celebrando o encontro de duas almas, o dia em que nossa história de amor começou a ser escrita nas estrelas.
-                </p>
+                <div class="glass-card rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center group">
+                    <span id="months" class="font-serifHeader text-3xl sm:text-5xl md:text-6xl font-bold text-white group-hover:text-rose-300 transition-colors">00</span>
+                    <span class="text-xs sm:text-sm uppercase tracking-widest text-roseGold/80 mt-2 font-medium">Meses</span>
+                </div>
+                <div class="glass-card rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center group">
+                    <span id="days" class="font-serifHeader text-3xl sm:text-5xl md:text-6xl font-bold text-white group-hover:text-rose-300 transition-colors">00</span>
+                    <span class="text-xs sm:text-sm uppercase tracking-widest text-roseGold/80 mt-2 font-medium">Dias</span>
+                </div>
+                <div class="glass-card rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center group">
+                    <span id="hours" class="font-serifHeader text-3xl sm:text-5xl md:text-6xl font-bold text-white group-hover:text-rose-300 transition-colors">00</span>
+                    <span class="text-xs sm:text-sm uppercase tracking-widest text-roseGold/80 mt-2 font-medium">Horas</span>
+                </div>
+                <div class="glass-card rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center group">
+                    <span id="minutes" class="font-serifHeader text-3xl sm:text-5xl md:text-6xl font-bold text-white group-hover:text-rose-300 transition-colors">00</span>
+                    <span class="text-xs sm:text-sm uppercase tracking-widest text-roseGold/80 mt-2 font-medium">Minutos</span>
+                </div>
+                <div class="glass-card rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center group">
+                    <span id="seconds" class="font-serifHeader text-3xl sm:text-5xl md:text-6xl font-bold text-rose-400 group-hover:text-rose-300 transition-colors">00</span>
+                    <span class="text-xs sm:text-sm uppercase tracking-widest text-roseGold/80 mt-2 font-medium">Segundos</span>
+                </div>
             </div>
 
-            <!-- Section 2: Victor's Birthday -->
-            <div class="glass-card glass-blue rounded-2xl p-6 flex flex-col items-center justify-center group text-center">
-                <div class="bg-blue-900/40 p-3 rounded-full mb-4 group-hover:scale-110 transition-transform shadow-[0_0_15px_rgba(59,130,246,0.3)]">
-                    <i class="fa-solid fa-cake-candles text-blue-300 text-2xl"></i>
+            <div class="w-full max-w-2xl mt-6 space-y-2">
+                <div class="flex justify-between text-xs text-roseGold/70">
+                    <span>Início da Jornada</span>
+                    <span id="progress-percentage" class="text-rose-300 font-semibold">0%</span>
+                    <span>27/01/2030</span>
                 </div>
-                <h3 class="font-serifHeader text-lg sm:text-xl text-blue-200 font-bold mb-2">Aniversário do Victor</h3>
-                <h4 class="text-sm font-semibold text-blue-300 mb-2 uppercase tracking-wide">17 de Abril</h4>
-                <p class="text-xs sm:text-sm text-blue-200/70 leading-relaxed">
-                    O dia em que o mundo ficou mais brilhante. Celebrando a vida, os sonhos e o seu sorriso inesquecível.
-                </p>
+                <div class="w-full bg-white/5 rounded-full h-2 p-0.5 border border-roseGold/20 overflow-hidden">
+                    <div id="progress-bar" class="bg-gradient-to-r from-rose-700 via-pink-500 to-rose-300 h-full rounded-full transition-all duration-1000 w-0"></div>
+                </div>
             </div>
+        </section>
 
-            <!-- Section 3: Partner's Birthday -->
-            <div class="glass-card glass-red rounded-2xl p-6 flex flex-col items-center justify-center group text-center">
-                <div class="bg-red-900/40 p-3 rounded-full mb-4 group-hover:scale-110 transition-transform shadow-[0_0_15px_rgba(239,68,68,0.3)]">
-                    <i class="fa-solid fa-gift text-red-300 text-2xl"></i>
+        <!-- QUOTE SECTION -->
+        <section class="w-full max-w-xl">
+            <div class="glass-card rounded-2xl p-6 relative overflow-hidden">
+                <i class="fa-solid fa-quote-left text-3xl text-rose-500/20 absolute top-3 left-4"></i>
+                <div class="relative z-10 space-y-3">
+                    <p id="quote-text" class="text-sm sm:text-base italic text-pink-100/90 font-light leading-relaxed min-h-[3rem] flex items-center justify-center transition-opacity duration-300">
+                        "O tempo é muito lento para os que esperam, mas para os que amam, o tempo é eternidade."
+                    </p>
+                    <p id="quote-author" class="text-xs font-semibold text-roseGold tracking-wider uppercase transition-opacity duration-300">— Henry Van Dyke</p>
                 </div>
-                <h3 class="font-serifHeader text-lg sm:text-xl text-red-200 font-bold mb-2">Aniversário da Julia</h3>
-                <h4 class="text-sm font-semibold text-red-300 mb-2 uppercase tracking-wide">27 de Janeiro</h4>
-                <p class="text-xs sm:text-sm text-red-200/70 leading-relaxed">
-                    A data mais doce do calendário. Um brinde à pessoa que transforma todos os meus dias em poesia e paixão.
-                </p>
+                <div class="flex justify-center items-center gap-3 mt-4 pt-4 border-t border-roseGold/10">
+                    <button id="prev-quote" class="p-2 text-roseGold/60 hover:text-white transition-colors"><i class="fa-solid fa-chevron-left text-xs"></i></button>
+                    <button id="heart-burst-btn" class="glass-card hover:bg-rose-600/30 text-rose-300 px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-300 flex items-center gap-1.5 active:scale-95">
+                        <i class="fa-solid fa-heart text-rose-500"></i> Enviar Amor
+                    </button>
+                    <button id="next-quote" class="p-2 text-roseGold/60 hover:text-white transition-colors"><i class="fa-solid fa-chevron-right text-xs"></i></button>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <!-- SPREAD SECTION 1: ANNIVERSARY -->
+        <section class="w-full max-w-3xl">
+            <div class="glass-card glass-purple rounded-3xl p-8 flex flex-col md:flex-row items-center gap-6 group">
+                <div class="bg-purple-900/40 p-4 rounded-full group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(168,85,247,0.3)] shrink-0">
+                    <i class="fa-solid fa-heart text-purple-300 text-3xl"></i>
+                </div>
+                <div class="text-center md:text-left flex-1">
+                    <h3 class="font-serifHeader text-xl sm:text-2xl text-purple-200 font-bold mb-1">Nosso Aniversário de Namoro</h3>
+                    <h4 class="text-xs sm:text-sm font-semibold text-purple-300 mb-3 uppercase tracking-wide">13 de Setembro • Próxima Celebração</h4>
+                    <p class="text-xs sm:text-sm text-purple-200/70 leading-relaxed mb-4">
+                        O dia em que você aceitou ser minha e fez de "nós" uma realidade.
+                    </p>
+                    <div class="grid grid-cols-4 gap-2 bg-purple-950/60 border border-purple-500/30 rounded-2xl p-3 text-center">
+                        <div>
+                            <span id="sub-anniv-months" class="font-serifHeader text-lg sm:text-xl font-bold text-purple-200 block">00</span>
+                            <span class="text-[9px] uppercase tracking-widest text-purple-300/80">Meses</span>
+                        </div>
+                        <div>
+                            <span id="sub-anniv-days" class="font-serifHeader text-lg sm:text-xl font-bold text-purple-200 block">00</span>
+                            <span class="text-[9px] uppercase tracking-widest text-purple-300/80">Dias</span>
+                        </div>
+                        <div>
+                            <span id="sub-anniv-hours" class="font-serifHeader text-lg sm:text-xl font-bold text-purple-200 block">00</span>
+                            <span class="text-[9px] uppercase tracking-widest text-purple-300/80">Horas</span>
+                        </div>
+                        <div>
+                            <span id="sub-anniv-secs" class="font-serifHeader text-lg sm:text-xl font-bold text-purple-300 block">00</span>
+                            <span class="text-[9px] uppercase tracking-widest text-purple-300/80">Segs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SPREAD SECTION 2: VICTOR'S BIRTHDAY -->
+        <section class="w-full max-w-3xl">
+            <div class="glass-card glass-blue rounded-3xl p-8 flex flex-col md:flex-row items-center gap-6 group">
+                <div class="bg-blue-900/40 p-4 rounded-full group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(59,130,246,0.3)] shrink-0">
+                    <i class="fa-solid fa-cake-candles text-blue-300 text-3xl"></i>
+                </div>
+                <div class="text-center md:text-left flex-1">
+                    <h3 class="font-serifHeader text-xl sm:text-2xl text-blue-200 font-bold mb-1">Aniversário do Victor</h3>
+                    <h4 class="text-xs sm:text-sm font-semibold text-blue-300 mb-3 uppercase tracking-wide">17 de Abril • Próxima Celebração</h4>
+                    <p class="text-xs sm:text-sm text-blue-200/70 leading-relaxed mb-4">
+                        O terceiro dia mais importante da minha vida, logo após do dia em que você me aceitou e do dia em que te conheci.
+                    </p>
+                    <div class="grid grid-cols-4 gap-2 bg-blue-950/60 border border-blue-500/30 rounded-2xl p-3 text-center">
+                        <div>
+                            <span id="sub-victor-months" class="font-serifHeader text-lg sm:text-xl font-bold text-blue-200 block">00</span>
+                            <span class="text-[9px] uppercase tracking-widest text-blue-300/80">Meses</span>
+                        </div>
+                        <div>
+                            <span id="sub-victor-days" class="font-serifHeader text-lg sm:text-xl font-bold text-blue-200 block">00</span>
+                            <span class="text-[9px] uppercase tracking-widest text-blue-300/80">Dias</span>
+                        </div>
+                        <div>
+                            <span id="sub-victor-hours" class="font-serifHeader text-lg sm:text-xl font-bold text-blue-200 block">00</span>
+                            <span class="text-[9px] uppercase tracking-widest text-blue-300/80">Horas</span>
+                        </div>
+                        <div>
+                            <span id="sub-victor-secs" class="font-serifHeader text-lg sm:text-xl font-bold text-blue-300 block">00</span>
+                            <span class="text-[9px] uppercase tracking-widest text-blue-300/80">Segs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SPREAD SECTION 3: JULIA'S BIRTHDAY -->
+        <section class="w-full max-w-3xl">
+            <div class="glass-card glass-red rounded-3xl p-8 flex flex-col md:flex-row items-center gap-6 group">
+                <div class="bg-red-900/40 p-4 rounded-full group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(239,68,68,0.3)] shrink-0">
+                    <i class="fa-solid fa-gift text-red-300 text-3xl"></i>
+                </div>
+                <div class="text-center md:text-left flex-1">
+                    <h3 class="font-serifHeader text-xl sm:text-2xl text-red-200 font-bold mb-1">Aniversário da Julia</h3>
+                    <h4 class="text-xs sm:text-sm font-semibold text-red-300 mb-3 uppercase tracking-wide">27 de Janeiro • Próxima Celebração</h4>
+                    <p class="text-xs sm:text-sm text-red-200/70 leading-relaxed mb-4">
+                        A data mais importante do calendário. Sem você, eu não seria tão feliz quanto sou hoje, e a certeza de que amanhã será ainda melhor com você ao meu lado.
+                    </p>
+                    <div class="grid grid-cols-4 gap-2 bg-red-950/60 border border-red-500/30 rounded-2xl p-3 text-center">
+                        <div>
+                            <span id="sub-julia-months" class="font-serifHeader text-lg sm:text-xl font-bold text-red-200 block">00</span>
+                            <span class="text-[9px] uppercase tracking-widest text-red-300/80">Meses</span>
+                        </div>
+                        <div>
+                            <span id="sub-julia-days" class="font-serifHeader text-lg sm:text-xl font-bold text-red-200 block">00</span>
+                            <span class="text-[9px] uppercase tracking-widest text-red-300/80">Dias</span>
+                        </div>
+                        <div>
+                            <span id="sub-julia-hours" class="font-serifHeader text-lg sm:text-xl font-bold text-red-200 block">00</span>
+                            <span class="text-[9px] uppercase tracking-widest text-red-300/80">Horas</span>
+                        </div>
+                        <div>
+                            <span id="sub-julia-secs" class="font-serifHeader text-lg sm:text-xl font-bold text-red-200 block">00</span>
+                            <span class="text-[9px] uppercase tracking-widest text-red-300/80">Segs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
     </main>
 
-    <footer class="content-layer w-full p-6 text-center text-xs text-roseGold/50 mt-8">
+    <footer class="content-layer w-full p-6 text-center text-xs text-roseGold/50 mt-12">
         <p class="flex items-center justify-center gap-1">
             Feito com <i class="fa-solid fa-heart text-rose-500 text-xs animate-bounce"></i> para a pessoa mais especial do universo
         </p>
     </footer>
 
     <script>
-        // Setup dates
+        // Setup main target date
         const targetDate = new Date('January 27, 2030 00:00:00').getTime();
         const startDate = new Date('January 1, 2024 00:00:00').getTime();
 
@@ -258,12 +327,20 @@
             { text: "O tempo é muito lento para os que esperam, muito rápido para os que têm medo, mas para os que amam, o tempo é eternidade.", author: "Henry Van Dyke" },
             { text: "Eu te escolheria. Centenas de vidas, em qualquer universo, em qualquer versão da realidade, eu encontraria você.", author: "Kiersten White" },
             { text: "O amor não consiste em olhar um para o outro, mas em olhar juntos na mesma direção.", author: "Antoine de Saint-Exupéry" },
-            // Added quotes about young lovers, hope, and naivety:
             { text: "É uma coisa admirável a ingenuidade do primeiro amor; ela tem tantas ilusões que se crê eterna.", author: "Victor Hugo" },
             { text: "Amantes jovens não precisam de conselhos, apenas de sonhos nos olhos e a certeza boba de que o mundo foi feito só para os dois.", author: "Poesia Jovem" },
             { text: "A juventude tem essa doce cegueira: acredita que um olhar cruzado na esquina é capaz de reescrever o destino inteiro.", author: "Crônica do Amanhecer" },
             { text: "Tão jovens, tão cheios de esperança ingenua, achando que o infinito cabia inteirinho no abraço do primeiro amor.", author: "Romance Moderno" },
-            { text: "Até 27 de Janeiro de 2030 e para todo o sempre, cada segundo me aproxima do seu abraço.", author: "Declaração de Amor" }
+            { text: "Até 27 de Janeiro de 2030 e para todo o sempre, cada segundo me aproxima do seu abraço.", author: "Declaração de Amor" },
+            { text: "O meu lugar favorito no mundo inteiro é bem ao seu lado, onde o tempo parece parar e o resto do universo deixa de importar.", author: "Declaração de Amor" },
+            { text: "A distância física é apenas um detalhe irrelevante quando o sentimento que habita no peito é maior do que qualquer quilômetro.", author: "Poesia Romântica" },
+            { text: "Você se tornou o meu pensamento mais bonito ao acordar e a última saudade antes de fechar os olhos para dormir.", author: "Declaração de Amor" },
+            { text: "Haverá sempre um pedaço de mim que sorri toda vez que o meu celular vibra e o seu nome aparece na tela.", author: "Declaração de Amor" },
+            { text: "Amar você é a certeza mais bonita que a minha vida teve o privilégio de abraçar.", author: "Declaração de Amor" },
+            { text: "O amor jovem é destemido porque ignora o impossível; ele constrói pontes com promessas e navega no escuro com a pura certeza de se encontrar.", author: "Alquimia do Coração" },
+            { text: "Quando se é jovem e se ama com toda a alma, cada despedida é apenas uma promessa sussurrada de que o reencontro será ainda mais arrebatador.", author: "Crônicas da Paixão" },
+            { text: "Há uma beleza indescritível naqueles que se amam na juventude: eles têm o tempo inteiro do mundo nas mãos e escolhem gastá-lo sonhando um com o outro.", author: "Poesia Juvenil" },
+            { text: "O primeiro grande amor não é apenas um capítulo na história; ele é a tinta com que todas as esperanças do futuro são escritas.", author: "Reflexões de Outono" }
         ];
 
         let currentQuoteIndex = 0;
@@ -279,22 +356,41 @@
             progressBar: document.getElementById('progress-bar'),
             progressPct: document.getElementById('progress-percentage'),
             quoteText: document.getElementById('quote-text'),
-            quoteAuthor: document.getElementById('quote-author')
+            quoteAuthor: document.getElementById('quote-author'),
+            
+            // Sub countdown DOM elements
+            subAnnivMonths: document.getElementById('sub-anniv-months'),
+            subAnnivDays: document.getElementById('sub-anniv-days'),
+            subAnnivHours: document.getElementById('sub-anniv-hours'),
+            subAnnivSecs: document.getElementById('sub-anniv-secs'),
+
+            subVictorMonths: document.getElementById('sub-victor-months'),
+            subVictorDays: document.getElementById('sub-victor-days'),
+            subVictorHours: document.getElementById('sub-victor-hours'),
+            subVictorSecs: document.getElementById('sub-victor-secs'),
+
+            subJuliaMonths: document.getElementById('sub-julia-months'),
+            subJuliaDays: document.getElementById('sub-julia-days'),
+            subJuliaHours: document.getElementById('sub-julia-hours'),
+            subJuliaSecs: document.getElementById('sub-julia-secs')
         };
 
-        function updateCountdown() {
+        function getNextOccurrence(month, day) {
             const now = new Date();
-            const target = new Date(targetDate);
-            const distance = target.getTime() - now.getTime();
-
-            if (distance < 0) {
-                ['years','months','days','hours','minutes','seconds'].forEach(k => els[k].innerText = "00");
-                els.progressBar.style.width = "100%";
-                els.progressPct.innerText = "100%";
-                return;
+            let year = now.getFullYear();
+            let target = new Date(year, month - 1, day, 0, 0, 0);
+            if (target.getTime() <= now.getTime()) {
+                target = new Date(year + 1, month - 1, day, 0, 0, 0);
             }
+            return target.getTime();
+        }
 
-            // Calculate precise calendar differences
+        function calculateDetailedBreakdown(targetTimestamp) {
+            const now = new Date();
+            const target = new Date(targetTimestamp);
+            let distance = target.getTime() - now.getTime();
+            if (distance < 0) return { months: 0, days: 0, hours: 0, seconds: 0 };
+
             let years = target.getFullYear() - now.getFullYear();
             let months = target.getMonth() - now.getMonth();
             let days = target.getDate() - now.getDate();
@@ -302,7 +398,6 @@
             let minutes = target.getMinutes() - now.getMinutes();
             let seconds = target.getSeconds() - now.getSeconds();
 
-            // Borrow from higher units if negative
             if (seconds < 0) { seconds += 60; minutes--; }
             if (minutes < 0) { minutes += 60; hours--; }
             if (hours < 0) { hours += 24; days--; }
@@ -313,21 +408,63 @@
             }
             if (months < 0) { months += 12; years--; }
 
-            els.years.innerText = String(years).padStart(2, '0');
-            els.months.innerText = String(months).padStart(2, '0');
-            els.days.innerText = String(days).padStart(2, '0');
-            els.hours.innerText = String(hours).padStart(2, '0');
-            els.minutes.innerText = String(minutes).padStart(2, '0');
-            els.seconds.innerText = String(seconds).padStart(2, '0');
-
-            const elapsed = now.getTime() - startDate;
-            const pct = Math.min(Math.max((elapsed / (targetDate - startDate)) * 100, 0), 100).toFixed(1);
-            els.progressBar.style.width = `${pct}%`;
-            els.progressPct.innerText = `${pct}%`;
+            months += years * 12; // Total months including years
+            return { months, days, hours, seconds };
         }
 
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
+        function updateSubCountdownUI(targetTimestamp, prefix) {
+            const data = calculateDetailedBreakdown(targetTimestamp);
+            document.getElementById(`${prefix}-months`).innerText = String(data.months).padStart(2, '0');
+            document.getElementById(`${prefix}-days`).innerText = String(data.days).padStart(2, '0');
+            document.getElementById(`${prefix}-hours`).innerText = String(data.hours).padStart(2, '0');
+            document.getElementById(`${prefix}-secs`).innerText = String(data.seconds).padStart(2, '0');
+        }
+
+        function updateCountdowns() {
+            // Main countdown
+            const now = new Date();
+            const target = new Date(targetDate);
+            const distance = target.getTime() - now.getTime();
+
+            if (distance >= 0) {
+                let years = target.getFullYear() - now.getFullYear();
+                let months = target.getMonth() - now.getMonth();
+                let days = target.getDate() - now.getDate();
+                let hours = target.getHours() - now.getHours();
+                let minutes = target.getMinutes() - now.getMinutes();
+                let seconds = target.getSeconds() - now.getSeconds();
+
+                if (seconds < 0) { seconds += 60; minutes--; }
+                if (minutes < 0) { minutes += 60; hours--; }
+                if (hours < 0) { hours += 24; days--; }
+                if (days < 0) {
+                    const prevMonth = new Date(target.getFullYear(), target.getMonth(), 0);
+                    days += prevMonth.getDate();
+                    months--;
+                }
+                if (months < 0) { months += 12; years--; }
+
+                els.years.innerText = String(years).padStart(2, '0');
+                els.months.innerText = String(months).padStart(2, '0');
+                els.days.innerText = String(days).padStart(2, '0');
+                els.hours.innerText = String(hours).padStart(2, '0');
+                els.minutes.innerText = String(minutes).padStart(2, '0');
+                els.seconds.innerText = String(seconds).padStart(2, '0');
+
+                const elapsed = now.getTime() - startDate;
+                const pct = Math.min(Math.max((elapsed / (targetDate - startDate)) * 100, 0), 100).toFixed(1);
+                els.progressBar.style.width = `${pct}%`;
+                els.progressPct.innerText = `${pct}%`;
+            }
+
+            // Sub-countdowns updates with full breakdown (Months, Days, Hours, Seconds)
+            updateSubCountdownUI(getNextOccurrence(9, 13), 'sub-anniv');  // Sept 13
+            updateSubCountdownUI(getNextOccurrence(4, 17), 'sub-victor'); // Apr 17
+            updateSubCountdownUI(getNextOccurrence(1, 27), 'sub-julia');  // Jan 27
+        }
+
+        setInterval(updateCountdowns, 1000);
+        updateCountdowns();
 
         // Quote logic
         function displayQuote(index) {
@@ -419,12 +556,10 @@
         }
         animateParticles();
 
-        // Sound effect for "Send Love" / Clicks
         function playLoveSound() {
             try {
                 const ctx = getAudioContext();
                 const now = ctx.currentTime;
-                // Magical sparkling arpeggio notes
                 const notes = [523.25, 659.25, 783.99, 1046.50]; 
                 notes.forEach((freq, idx) => {
                     const osc = ctx.createOscillator();
@@ -442,9 +577,7 @@
                     osc.start(now + idx * 0.06);
                     osc.stop(now + idx * 0.06 + 0.45);
                 });
-            } catch (e) {
-                // Ignore audio context blocks prior to user gesture
-            }
+            } catch (e) {}
         }
 
         window.addEventListener('click', (e) => {
@@ -461,6 +594,7 @@
         let audioCtx = null;
         let isPlayingMusic = false;
         let songTimer = null;
+        let audioSessionId = 0;
 
         const musicBtn = document.getElementById('music-toggle');
         const musicIcon = document.getElementById('music-icon');
@@ -478,27 +612,19 @@
             G4: 392.00, A4: 440.00, B4: 493.88, C5: 523.25, D5: 587.33, E5: 659.25, Fs5: 739.99, G5: 783.99, A5: 880.00
         };
 
-        const STEP_TIME = 0.28; // Bright, flowing tempo
+        const STEP_TIME = 0.28;
 
-        // Hopeful Melody (Uplifting Arpeggios)
         const hopefulMelody = [
-            // G major
             { n: N.G4, d: 2 }, { n: N.B4, d: 2 }, { n: N.D5, d: 2 }, { n: N.G5, d: 2 },
-            // C major
             { n: N.G4, d: 2 }, { n: N.C5, d: 2 }, { n: N.E5, d: 2 }, { n: N.G5, d: 2 },
-            // E minor
             { n: N.G4, d: 2 }, { n: N.B4, d: 2 }, { n: N.E5, d: 2 }, { n: N.G5, d: 2 },
-            // D major
             { n: N.Fs4, d: 2 }, { n: N.A4, d: 2 }, { n: N.D5, d: 2 }, { n: N.Fs5, d: 2 },
-            
-            // Second phrase (variation)
             { n: N.G4, d: 2 }, { n: N.B4, d: 2 }, { n: N.D5, d: 2 }, { n: N.A5, d: 2 },
             { n: N.G5, d: 4 }, { n: N.E5, d: 4 },
             { n: N.D5, d: 4 }, { n: N.B4, d: 4 },
             { n: N.A4, d: 8 }
         ];
 
-        // Soft Ambient Pad (Major chord roots)
         const hopefulBass = [
             { n: N.G3, d: 8 }, { n: N.C4, d: 8 },
             { n: N.E4, d: 8 }, { n: N.D4, d: 8 },
@@ -506,12 +632,10 @@
             { n: N.E4, d: 8 }, { n: N.D4, d: 8 }
         ];
 
-        // Acoustic Synth Function (Piano/Strings hybrid)
         function playAcousticNote(freq, startTime, duration, vol = 0.2, isBass = false) {
             if (!freq || freq === 0) return;
             const ctx = getAudioContext();
 
-            // Two oscillators for a richer sound
             const osc1 = ctx.createOscillator();
             const osc2 = ctx.createOscillator();
             const gainNode = ctx.createGain();
@@ -519,11 +643,9 @@
             osc1.type = isBass ? 'triangle' : 'sine';
             osc2.type = isBass ? 'sine' : 'triangle';
 
-            // Slight detune for warmth
             osc1.frequency.setValueAtTime(freq, startTime);
             osc2.frequency.setValueAtTime(freq * 1.002, startTime); 
 
-            // Envelope (Attack, Sustain, Long Release like Reverb/Piano Pedal)
             gainNode.gain.setValueAtTime(0, startTime);
             gainNode.gain.linearRampToValueAtTime(vol, startTime + 0.05);
             gainNode.gain.setValueAtTime(vol * 0.8, startTime + duration - 0.1);
@@ -540,7 +662,8 @@
         }
 
         function startHopefulLoop() {
-            if (!isPlayingMusic) return; // Prevent loop execution if stopped
+            if (!isPlayingMusic) return;
+            const currentSession = audioSessionId;
             
             const ctx = getAudioContext();
             let startBaseTime = ctx.currentTime + 0.05;
@@ -548,7 +671,7 @@
             let melodyTime = startBaseTime;
             hopefulMelody.forEach((item) => {
                 const duration = item.d * STEP_TIME;
-                playAcousticNote(item.n, melodyTime + (Math.random() * 0.015), duration, 0.15, false);
+                playAcousticNote(item.n, melodyTime, duration, 0.15, false);
                 melodyTime += duration;
             });
 
@@ -560,16 +683,17 @@
             });
 
             const totalLoopTime = (melodyTime - startBaseTime) * 1000;
-            if (isPlayingMusic) {
-                if (songTimer) clearTimeout(songTimer);
-                songTimer = setTimeout(() => {
-                    if (isPlayingMusic) startHopefulLoop();
-                }, Math.max(totalLoopTime - 100, 1000));
-            }
+            if (songTimer) clearTimeout(songTimer);
+            songTimer = setTimeout(() => {
+                if (isPlayingMusic && currentSession === audioSessionId) {
+                    startHopefulLoop();
+                }
+            }, Math.max(totalLoopTime - 100, 1000));
         }
 
         function stopMusic() {
             isPlayingMusic = false;
+            audioSessionId++; // Invalidate active timeout loops
             if (songTimer) {
                 clearTimeout(songTimer);
                 songTimer = null;
@@ -577,10 +701,10 @@
         }
 
         function startMusicWithUI() {
-            // Prevent stacking: if already playing, don't trigger duplicate instances
             if (isPlayingMusic) return; 
             
             isPlayingMusic = true;
+            audioSessionId++;
             if (songTimer) {
                 clearTimeout(songTimer);
                 songTimer = null;
@@ -602,9 +726,7 @@
 
         musicBtn.addEventListener('click', toggleMusic);
 
-        // Immediate load / autoplay handling to fix startup lag
         window.addEventListener('DOMContentLoaded', () => {
-            // Prepare AudioContext reference early
             getAudioContext();
             setupInteractionListener();
         });
