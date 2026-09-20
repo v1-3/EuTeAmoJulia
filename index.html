@@ -258,6 +258,11 @@
             { text: "O tempo é muito lento para os que esperam, muito rápido para os que têm medo, mas para os que amam, o tempo é eternidade.", author: "Henry Van Dyke" },
             { text: "Eu te escolheria. Centenas de vidas, em qualquer universo, em qualquer versão da realidade, eu encontraria você.", author: "Kiersten White" },
             { text: "O amor não consiste em olhar um para o outro, mas em olhar juntos na mesma direção.", author: "Antoine de Saint-Exupéry" },
+            // Added quotes about young lovers, hope, and naivety:
+            { text: "É uma coisa admirável a ingenuidade do primeiro amor; ela tem tantas ilusões que se crê eterna.", author: "Victor Hugo" },
+            { text: "Amantes jovens não precisam de conselhos, apenas de sonhos nos olhos e a certeza boba de que o mundo foi feito só para os dois.", author: "Poesia Jovem" },
+            { text: "A juventude tem essa doce cegueira: acredita que um olhar cruzado na esquina é capaz de reescrever o destino inteiro.", author: "Crônica do Amanhecer" },
+            { text: "Tão jovens, tão cheios de esperança ingenua, achando que o infinito cabia inteirinho no abraço do primeiro amor.", author: "Romance Moderno" },
             { text: "Até 27 de Janeiro de 2030 e para todo o sempre, cada segundo me aproxima do seu abraço.", author: "Declaração de Amor" }
         ];
 
@@ -414,13 +419,43 @@
         }
         animateParticles();
 
+        // Sound effect for "Send Love" / Clicks
+        function playLoveSound() {
+            try {
+                const ctx = getAudioContext();
+                const now = ctx.currentTime;
+                // Magical sparkling arpeggio notes
+                const notes = [523.25, 659.25, 783.99, 1046.50]; 
+                notes.forEach((freq, idx) => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, now + idx * 0.06);
+                    
+                    gain.gain.setValueAtTime(0, now + idx * 0.06);
+                    gain.gain.linearRampToValueAtTime(0.08, now + idx * 0.06 + 0.01);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.06 + 0.4);
+                    
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    
+                    osc.start(now + idx * 0.06);
+                    osc.stop(now + idx * 0.06 + 0.45);
+                });
+            } catch (e) {
+                // Ignore audio context blocks prior to user gesture
+            }
+        }
+
         window.addEventListener('click', (e) => {
             if (e.target.closest('button') || e.target.closest('a')) return;
             createHeartBurst(e.clientX, e.clientY, 15);
+            playLoveSound();
         });
         document.getElementById('heart-burst-btn').addEventListener('click', (e) => {
             const rect = e.target.getBoundingClientRect();
             createHeartBurst(rect.left + rect.width / 2, rect.top, 25);
+            playLoveSound();
         });
 
         let audioCtx = null;
@@ -505,13 +540,14 @@
         }
 
         function startHopefulLoop() {
+            if (!isPlayingMusic) return; // Prevent loop execution if stopped
+            
             const ctx = getAudioContext();
-            let startBaseTime = ctx.currentTime + 0.1;
+            let startBaseTime = ctx.currentTime + 0.05;
 
             let melodyTime = startBaseTime;
             hopefulMelody.forEach((item) => {
                 const duration = item.d * STEP_TIME;
-                // Add tiny expressive delay/rubato randomly to feel human
                 playAcousticNote(item.n, melodyTime + (Math.random() * 0.015), duration, 0.15, false);
                 melodyTime += duration;
             });
@@ -525,20 +561,30 @@
 
             const totalLoopTime = (melodyTime - startBaseTime) * 1000;
             if (isPlayingMusic) {
+                if (songTimer) clearTimeout(songTimer);
                 songTimer = setTimeout(() => {
                     if (isPlayingMusic) startHopefulLoop();
-                }, Math.max(totalLoopTime + 500, 1000));
+                }, Math.max(totalLoopTime - 100, 1000));
             }
         }
 
         function stopMusic() {
             isPlayingMusic = false;
-            if (songTimer) clearTimeout(songTimer);
+            if (songTimer) {
+                clearTimeout(songTimer);
+                songTimer = null;
+            }
         }
 
         function startMusicWithUI() {
-            if (isPlayingMusic) return;
+            // Prevent stacking: if already playing, don't trigger duplicate instances
+            if (isPlayingMusic) return; 
+            
             isPlayingMusic = true;
+            if (songTimer) {
+                clearTimeout(songTimer);
+                songTimer = null;
+            }
             startHopefulLoop();
             musicIcon.className = "fa-solid fa-compact-disc text-rose-400 animate-spin";
             musicLabel.innerText = "Pausar Melodia";
@@ -556,27 +602,21 @@
 
         musicBtn.addEventListener('click', toggleMusic);
 
-        // Autoplay logic - Attempt immediately on load
-        window.addEventListener('load', () => {
-            const ctx = getAudioContext();
-            
-            // Attempt to start immediately
-            startMusicWithUI();
-            
-            // Setup fallback for browser autoplay policies
+        // Immediate load / autoplay handling to fix startup lag
+        window.addEventListener('DOMContentLoaded', () => {
+            // Prepare AudioContext reference early
+            getAudioContext();
             setupInteractionListener();
         });
 
         function setupInteractionListener() {
             const start = () => {
-                if (!isPlayingMusic || getAudioContext().state === 'suspended') {
-                    getAudioContext().resume();
+                if (!isPlayingMusic) {
+                    getAudioContext();
                     startMusicWithUI();
                 }
-                // Remove listeners once interacted
                 ['click', 'touchstart', 'keydown', 'scroll'].forEach(evt => window.removeEventListener(evt, start));
             };
-            // Add passive listeners for first interaction
             ['click', 'touchstart', 'keydown', 'scroll'].forEach(evt => window.addEventListener(evt, start, { passive: true }));
         }
     </script>
