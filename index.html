@@ -115,6 +115,22 @@
 </head>
 <body class="min-h-full flex flex-col justify-between selection:bg-rose-500 selection:text-white relative">
 
+    <!-- SPLASH SCREEN PARA AUTOPLAY PERFEITO -->
+    <div id="welcome-screen" class="fixed inset-0 z-50 bg-[#120710]/95 backdrop-blur-xl flex flex-col items-center justify-center p-6 text-center transition-opacity duration-700">
+        <div class="glass-card rounded-3xl p-8 sm:p-12 max-w-md w-full space-y-6 shadow-2xl border border-roseGold/30">
+            <div class="w-16 h-16 mx-auto bg-rose-600/20 rounded-full flex items-center justify-center text-rose-400 text-3xl animate-pulse">
+                <i class="fa-solid fa-heart"></i>
+            </div>
+            <div class="space-y-2">
+                <h2 class="font-serifHeader text-2xl sm:text-3xl font-bold text-white">Para Você, Julia</h2>
+                <p class="text-xs sm:text-sm text-roseGold/80">Preparei algo especial com todo o meu amor.</p>
+            </div>
+            <button id="enter-btn" class="w-full py-4 bg-gradient-to-r from-rose-700 via-pink-600 to-rose-500 hover:opacity-90 text-white font-semibold rounded-2xl shadow-[0_0_25px_rgba(225,29,72,0.5)] transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2 text-sm sm:text-base">
+                <i class="fa-solid fa-play text-xs"></i> Clique para Entrar & Tocar Música
+            </button>
+        </div>
+    </div>
+
     <canvas id="particle-canvas"></canvas>
     <div class="ambient-bg fixed inset-0 pointer-events-none z-0"></div>
 
@@ -124,10 +140,10 @@
             <span class="font-serifHeader text-xs sm:text-sm tracking-widest uppercase text-roseGold/80">2030 • O Reencontro</span>
         </div>
 
-        <button id="music-toggle" class="glass-card px-4 py-2 rounded-full flex items-center gap-2.5 text-xs sm:text-sm text-roseGold hover:text-white transition-all duration-300 group" title="Alternar Melodia Esperançosa">
-            <i id="music-icon" class="fa-solid fa-music text-rose-400 group-hover:scale-110 transition-transform"></i>
-            <span id="music-label" class="hidden sm:inline">Melodia Esperançosa</span>
-        </button>
+        <a href="https://open.spotify.com/playlist/6vo1ZL6w8tChAKiIchyOcH" target="_blank" class="glass-card px-4 py-2 rounded-full flex items-center gap-2.5 text-xs sm:text-sm text-roseGold hover:text-white transition-all duration-300 group" title="Ouvir Playlist no Spotify">
+            <i class="fa-brands fa-spotify text-green-400 group-hover:scale-110 transition-transform"></i>
+            <span class="hidden sm:inline">Playlist Spotify</span>
+        </a>
     </header>
 
     <main class="content-layer flex-1 flex flex-col items-center justify-center px-4 py-8 text-center max-w-5xl mx-auto w-full space-y-16">
@@ -185,6 +201,13 @@
                 <div class="w-full bg-white/5 rounded-full h-2 p-0.5 border border-roseGold/20 overflow-hidden">
                     <div id="progress-bar" class="bg-gradient-to-r from-rose-700 via-pink-500 to-rose-300 h-full rounded-full transition-all duration-1000 w-0"></div>
                 </div>
+            </div>
+        </section>
+
+        <!-- SPOTIFY PLAYLIST EMBED SECTION -->
+        <section class="w-full max-w-xl">
+            <div class="glass-card rounded-2xl p-3 overflow-hidden">
+                <iframe id="spotify-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6vo1ZL6w8tChAKiIchyOcH?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             </div>
         </section>
 
@@ -268,7 +291,7 @@
                             <span class="text-[9px] uppercase tracking-widest text-blue-300/80">Horas</span>
                         </div>
                         <div>
-                            <span id="sub-victor-secs" class="font-serifHeader text-lg sm:text-xl font-bold text-blue-300 block">00</span>
+                            <span id="sub-victor-secs" class="font-serifHeader text-lg sm:text-xl font-bold text-blue-200 block">00</span>
                             <span class="text-[9px] uppercase tracking-widest text-blue-300/80">Segs</span>
                         </div>
                     </div>
@@ -310,6 +333,61 @@
             </div>
         </section>
 
+        <!-- SPREAD SECTION 4: WHY I LOVE YOU (10 POINTS) -->
+        <section class="w-full max-w-3xl">
+            <div class="glass-card rounded-3xl p-8 space-y-6">
+                <div class="text-center space-y-2">
+                    <div class="w-12 h-12 mx-auto bg-rose-600/20 rounded-full flex items-center justify-center text-rose-400 text-2xl animate-pulse">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <h3 class="font-serifHeader text-2xl text-white font-bold">Por Que Eu Te Amo?</h3>
+                    <p class="text-xs sm:text-sm text-roseGold/70">10 motivos do porque eu te amo, Julia❤️.</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
+                    <div class="glass-card p-4 rounded-2xl flex items-start gap-3">
+                        <span class="text-rose-400 font-bold text-sm mt-0.5">01</span>
+                        <p class="text-xs sm:text-sm text-pink-100/90">Sua paciência, por aguentar o que eu falo.</p>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl flex items-start gap-3">
+                        <span class="text-rose-400 font-bold text-sm mt-0.5">02</span>
+                        <p class="text-xs sm:text-sm text-pink-100/90">Sua curiosidade, sempre demonstrando interesse por tudo o que acontece e falo.</p>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl flex items-start gap-3">
+                        <span class="text-rose-400 font-bold text-sm mt-0.5">03</span>
+                        <p class="text-xs sm:text-sm text-pink-100/90">Sua intensidade, seja na maneira em que me ama ou quando se dedica a algo.</p>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl flex items-start gap-3">
+                        <span class="text-rose-400 font-bold text-sm mt-0.5">04</span>
+                        <p class="text-xs sm:text-sm text-pink-100/90">Sua beleza,  sendo a vista mais bela que eu poderia imaginar.</p>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl flex items-start gap-3">
+                        <span class="text-rose-400 font-bold text-sm mt-0.5">05</span>
+                        <p class="text-xs sm:text-sm text-pink-100/90">Seu carinho, é nele que eu me sinto realmente em casa.</p>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl flex items-start gap-3">
+                        <span class="text-rose-400 font-bold text-sm mt-0.5">06</span>
+                        <p class="text-xs sm:text-sm text-pink-100/90">Sua risada, que se tornou a minha melodia favorita na primeira sinfonia.</p>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl flex items-start gap-3">
+                        <span class="text-rose-400 font-bold text-sm mt-0.5">07</span>
+                        <p class="text-xs sm:text-sm text-pink-100/90">Sua voz, que se tornou a corneta para minha felicidade</p>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl flex items-start gap-3">
+                        <span class="text-rose-400 font-bold text-sm mt-0.5">08</span>
+                        <p class="text-xs sm:text-sm text-pink-100/90">Sua sinceridade, tão genuína que parece impossível duvidar.</p>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl flex items-start gap-3">
+                        <span class="text-rose-400 font-bold text-sm mt-0.5">09</span>
+                        <p class="text-xs sm:text-sm text-pink-100/90">Sua inocência, algo tão doce que até meu coração ganha cáries.</p>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl flex items-start gap-3">
+                        <span class="text-rose-400 font-bold text-sm mt-0.5">10</span>
+                        <p class="text-xs sm:text-sm text-pink-100/90">Porque simplesmente não imagino o meu futuro sem você ao meu lado.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer class="content-layer w-full p-6 text-center text-xs text-roseGold/50 mt-12">
@@ -319,6 +397,23 @@
     </footer>
 
     <script>
+        // Welcome interaction to trigger autoplay
+        document.getElementById('enter-btn').addEventListener('click', () => {
+            const welcome = document.getElementById('welcome-screen');
+            welcome.style.opacity = '0';
+            setTimeout(() => {
+                welcome.style.display = 'none';
+            }, 700);
+
+            // Trigger Spotify autoplay by reloading src with autoplay=1
+            const iframe = document.getElementById('spotify-iframe');
+            iframe.src += "&autoplay=1";
+            
+            // Also trigger sound effect / burst
+            createHeartBurst(window.innerWidth / 2, window.innerHeight / 2, 25);
+            playLoveSound();
+        });
+
         // Setup main target date
         const targetDate = new Date('January 27, 2030 00:00:00').getTime();
         const startDate = new Date('January 1, 2024 00:00:00').getTime();
@@ -345,7 +440,6 @@
 
         let currentQuoteIndex = 0;
 
-        // UI elements
         const els = {
             years: document.getElementById('years'),
             months: document.getElementById('months'),
@@ -358,7 +452,6 @@
             quoteText: document.getElementById('quote-text'),
             quoteAuthor: document.getElementById('quote-author'),
             
-            // Sub countdown DOM elements
             subAnnivMonths: document.getElementById('sub-anniv-months'),
             subAnnivDays: document.getElementById('sub-anniv-days'),
             subAnnivHours: document.getElementById('sub-anniv-hours'),
@@ -408,7 +501,7 @@
             }
             if (months < 0) { months += 12; years--; }
 
-            months += years * 12; // Total months including years
+            months += years * 12;
             return { months, days, hours, seconds };
         }
 
@@ -421,7 +514,6 @@
         }
 
         function updateCountdowns() {
-            // Main countdown
             const now = new Date();
             const target = new Date(targetDate);
             const distance = target.getTime() - now.getTime();
@@ -457,16 +549,14 @@
                 els.progressPct.innerText = `${pct}%`;
             }
 
-            // Sub-countdowns updates with full breakdown (Months, Days, Hours, Seconds)
-            updateSubCountdownUI(getNextOccurrence(9, 13), 'sub-anniv');  // Sept 13
-            updateSubCountdownUI(getNextOccurrence(4, 17), 'sub-victor'); // Apr 17
-            updateSubCountdownUI(getNextOccurrence(1, 27), 'sub-julia');  // Jan 27
+            updateSubCountdownUI(getNextOccurrence(9, 13), 'sub-anniv');
+            updateSubCountdownUI(getNextOccurrence(4, 17), 'sub-victor');
+            updateSubCountdownUI(getNextOccurrence(1, 27), 'sub-julia');
         }
 
         setInterval(updateCountdowns, 1000);
         updateCountdowns();
 
-        // Quote logic
         function displayQuote(index) {
             els.quoteText.classList.add('opacity-0');
             els.quoteAuthor.classList.add('opacity-0');
@@ -491,7 +581,6 @@
             displayQuote(currentQuoteIndex);
         }, 12000);
 
-        // Canvas Particles
         const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
         let width = canvas.width = window.innerWidth;
@@ -558,7 +647,7 @@
 
         function playLoveSound() {
             try {
-                const ctx = getAudioContext();
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
                 const now = ctx.currentTime;
                 const notes = [523.25, 659.25, 783.99, 1046.50]; 
                 notes.forEach((freq, idx) => {
@@ -590,157 +679,6 @@
             createHeartBurst(rect.left + rect.width / 2, rect.top, 25);
             playLoveSound();
         });
-
-        let audioCtx = null;
-        let isPlayingMusic = false;
-        let songTimer = null;
-        let audioSessionId = 0;
-
-        const musicBtn = document.getElementById('music-toggle');
-        const musicIcon = document.getElementById('music-icon');
-        const musicLabel = document.getElementById('music-label');
-
-        function getAudioContext() {
-            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            if (audioCtx.state === 'suspended') audioCtx.resume();
-            return audioCtx;
-        }
-
-        const N = {
-            REST: 0,
-            G3: 196.00, A3: 220.00, B3: 246.94, C4: 261.63, D4: 293.66, E4: 329.63, Fs4: 369.99,
-            G4: 392.00, A4: 440.00, B4: 493.88, C5: 523.25, D5: 587.33, E5: 659.25, Fs5: 739.99, G5: 783.99, A5: 880.00
-        };
-
-        const STEP_TIME = 0.28;
-
-        const hopefulMelody = [
-            { n: N.G4, d: 2 }, { n: N.B4, d: 2 }, { n: N.D5, d: 2 }, { n: N.G5, d: 2 },
-            { n: N.G4, d: 2 }, { n: N.C5, d: 2 }, { n: N.E5, d: 2 }, { n: N.G5, d: 2 },
-            { n: N.G4, d: 2 }, { n: N.B4, d: 2 }, { n: N.E5, d: 2 }, { n: N.G5, d: 2 },
-            { n: N.Fs4, d: 2 }, { n: N.A4, d: 2 }, { n: N.D5, d: 2 }, { n: N.Fs5, d: 2 },
-            { n: N.G4, d: 2 }, { n: N.B4, d: 2 }, { n: N.D5, d: 2 }, { n: N.A5, d: 2 },
-            { n: N.G5, d: 4 }, { n: N.E5, d: 4 },
-            { n: N.D5, d: 4 }, { n: N.B4, d: 4 },
-            { n: N.A4, d: 8 }
-        ];
-
-        const hopefulBass = [
-            { n: N.G3, d: 8 }, { n: N.C4, d: 8 },
-            { n: N.E4, d: 8 }, { n: N.D4, d: 8 },
-            { n: N.G3, d: 8 }, { n: N.C4, d: 8 },
-            { n: N.E4, d: 8 }, { n: N.D4, d: 8 }
-        ];
-
-        function playAcousticNote(freq, startTime, duration, vol = 0.2, isBass = false) {
-            if (!freq || freq === 0) return;
-            const ctx = getAudioContext();
-
-            const osc1 = ctx.createOscillator();
-            const osc2 = ctx.createOscillator();
-            const gainNode = ctx.createGain();
-
-            osc1.type = isBass ? 'triangle' : 'sine';
-            osc2.type = isBass ? 'sine' : 'triangle';
-
-            osc1.frequency.setValueAtTime(freq, startTime);
-            osc2.frequency.setValueAtTime(freq * 1.002, startTime); 
-
-            gainNode.gain.setValueAtTime(0, startTime);
-            gainNode.gain.linearRampToValueAtTime(vol, startTime + 0.05);
-            gainNode.gain.setValueAtTime(vol * 0.8, startTime + duration - 0.1);
-            gainNode.gain.exponentialRampToValueAtTime(0.001, startTime + duration + 1.5); 
-
-            osc1.connect(gainNode);
-            osc2.connect(gainNode);
-            gainNode.connect(ctx.destination);
-
-            osc1.start(startTime);
-            osc2.start(startTime);
-            osc1.stop(startTime + duration + 1.5);
-            osc2.stop(startTime + duration + 1.5);
-        }
-
-        function startHopefulLoop() {
-            if (!isPlayingMusic) return;
-            const currentSession = audioSessionId;
-            
-            const ctx = getAudioContext();
-            let startBaseTime = ctx.currentTime + 0.05;
-
-            let melodyTime = startBaseTime;
-            hopefulMelody.forEach((item) => {
-                const duration = item.d * STEP_TIME;
-                playAcousticNote(item.n, melodyTime, duration, 0.15, false);
-                melodyTime += duration;
-            });
-
-            let bassTime = startBaseTime;
-            hopefulBass.forEach((item) => {
-                const duration = item.d * STEP_TIME;
-                playAcousticNote(item.n, bassTime, duration, 0.12, true);
-                bassTime += duration;
-            });
-
-            const totalLoopTime = (melodyTime - startBaseTime) * 1000;
-            if (songTimer) clearTimeout(songTimer);
-            songTimer = setTimeout(() => {
-                if (isPlayingMusic && currentSession === audioSessionId) {
-                    startHopefulLoop();
-                }
-            }, Math.max(totalLoopTime - 100, 1000));
-        }
-
-        function stopMusic() {
-            isPlayingMusic = false;
-            audioSessionId++; // Invalidate active timeout loops
-            if (songTimer) {
-                clearTimeout(songTimer);
-                songTimer = null;
-            }
-        }
-
-        function startMusicWithUI() {
-            if (isPlayingMusic) return; 
-            
-            isPlayingMusic = true;
-            audioSessionId++;
-            if (songTimer) {
-                clearTimeout(songTimer);
-                songTimer = null;
-            }
-            startHopefulLoop();
-            musicIcon.className = "fa-solid fa-compact-disc text-rose-400 animate-spin";
-            musicLabel.innerText = "Pausar Melodia";
-        }
-
-        function toggleMusic() {
-            if (isPlayingMusic) {
-                stopMusic();
-                musicIcon.className = "fa-solid fa-music text-rose-400";
-                musicLabel.innerText = "Melodia Esperançosa";
-            } else {
-                startMusicWithUI();
-            }
-        }
-
-        musicBtn.addEventListener('click', toggleMusic);
-
-        window.addEventListener('DOMContentLoaded', () => {
-            getAudioContext();
-            setupInteractionListener();
-        });
-
-        function setupInteractionListener() {
-            const start = () => {
-                if (!isPlayingMusic) {
-                    getAudioContext();
-                    startMusicWithUI();
-                }
-                ['click', 'touchstart', 'keydown', 'scroll'].forEach(evt => window.removeEventListener(evt, start));
-            };
-            ['click', 'touchstart', 'keydown', 'scroll'].forEach(evt => window.addEventListener(evt, start, { passive: true }));
-        }
     </script>
 </body>
 </html>
