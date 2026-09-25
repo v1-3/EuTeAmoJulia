@@ -1,3 +1,4 @@
+<object:text path="index.html">
 <!DOCTYPE html>
 <html lang="pt-BR" class="h-full">
 <head>
@@ -137,7 +138,7 @@
     <header class="content-layer w-full p-6 flex justify-between items-center max-w-6xl mx-auto">
         <div class="flex items-center gap-2">
             <i class="fa-solid font-romantic text-roseGold text-3xl animate-pulse-slow">♥</i>
-            <span class="font-serifHeader text-xs sm:text-sm tracking-widest uppercase text-roseGold/80">2030 • O Reencontro</span>
+            <span class="font-serifHeader text-xs sm:text-sm tracking-widest uppercase text-roseGold/80">2028 • O Reencontro</span>
         </div>
 
         <a href="https://open.spotify.com/playlist/6vo1ZL6w8tChAKiIchyOcH" target="_blank" class="glass-card px-4 py-2 rounded-full flex items-center gap-2.5 text-xs sm:text-sm text-roseGold hover:text-white transition-all duration-300 group" title="Ouvir Playlist no Spotify">
@@ -161,7 +162,7 @@
                     </span>
                 </h1>
                 <p class="text-xs sm:text-sm text-roseGold/70 max-w-md mx-auto font-light tracking-wider uppercase pt-2">
-                    Destino agendado para <span class="text-rose-300 font-semibold">27 de Janeiro de 2030</span>
+                    Destino agendado para <span class="text-rose-300 font-semibold">27 de Janeiro de 2028</span>
                 </p>
             </div>
 
@@ -196,7 +197,7 @@
                 <div class="flex justify-between text-xs text-roseGold/70">
                     <span>Início da Jornada</span>
                     <span id="progress-percentage" class="text-rose-300 font-semibold">0%</span>
-                    <span>27/01/2030</span>
+                    <span>27/01/2028</span>
                 </div>
                 <div class="w-full bg-white/5 rounded-full h-2 p-0.5 border border-roseGold/20 overflow-hidden">
                     <div id="progress-bar" class="bg-gradient-to-r from-rose-700 via-pink-500 to-rose-300 h-full rounded-full transition-all duration-1000 w-0"></div>
@@ -397,7 +398,7 @@
     </footer>
 
     <script>
-        // Welcome interaction
+        // Welcome interaction to trigger autoplay
         document.getElementById('enter-btn').addEventListener('click', () => {
             const welcome = document.getElementById('welcome-screen');
             welcome.style.opacity = '0';
@@ -405,23 +406,17 @@
                 welcome.style.display = 'none';
             }, 700);
 
-            // Spotify embeds cannot be forced to autoplay reliably by changing
-            // the iframe URL. The click still counts as a user gesture, so
-            // reload the player with autoplay enabled and start the local
-            // audio immediately.
+            // Trigger Spotify autoplay by reloading src with autoplay=1
             const iframe = document.getElementById('spotify-iframe');
-            try {
-                const url = new URL(iframe.src);
-                url.searchParams.set('autoplay', '1');
-                iframe.src = url.toString();
-            } catch (e) {}
-
-            playLoveSound();
+            iframe.src += "&autoplay=1";
+            
+            // Also trigger sound effect / burst
             createHeartBurst(window.innerWidth / 2, window.innerHeight / 2, 25);
+            playLoveSound();
         });
 
         // Setup main target date
-        const targetDate = new Date('January 27, 2030 00:00:00').getTime();
+        const targetDate = new Date('January 27, 2028 00:00:00').getTime();
         const startDate = new Date('January 1, 2024 00:00:00').getTime();
 
         const quotes = [
@@ -432,7 +427,7 @@
             { text: "Amantes jovens não precisam de conselhos, apenas de sonhos nos olhos e a certeza boba de que o mundo foi feito só para os dois.", author: "Poesia Jovem" },
             { text: "A juventude tem essa doce cegueira: acredita que um olhar cruzado na esquina é capaz de reescrever o destino inteiro.", author: "Crônica do Amanhecer" },
             { text: "Tão jovens, tão cheios de esperança ingenua, achando que o infinito cabia inteirinho no abraço do primeiro amor.", author: "Romance Moderno" },
-            { text: "Até 27 de Janeiro de 2030 e para todo o sempre, cada segundo me aproxima do seu abraço.", author: "Declaração de Amor" },
+            { text: "Até 27 de Janeiro de 2028 e para todo o sempre, cada segundo me aproxima do seu abraço.", author: "Declaração de Amor" },
             { text: "O meu lugar favorito no mundo inteiro é bem ao seu lado, onde o tempo parece parar e o resto do universo deixa de importar.", author: "Declaração de Amor" },
             { text: "A distância física é apenas um detalhe irrelevante quando o sentimento que habita no peito é maior do que qualquer quilômetro.", author: "Poesia Romântica" },
             { text: "Você se tornou o meu pensamento mais bonito ao acordar e a última saudade antes de fechar os olhos para dormir.", author: "Declaração de Amor" },
@@ -688,3 +683,4 @@
     </script>
 </body>
 </html>
+</object:text>
