@@ -397,7 +397,7 @@
     </footer>
 
     <script>
-        // Welcome interaction to trigger autoplay
+        // Welcome interaction
         document.getElementById('enter-btn').addEventListener('click', () => {
             const welcome = document.getElementById('welcome-screen');
             welcome.style.opacity = '0';
@@ -405,13 +405,19 @@
                 welcome.style.display = 'none';
             }, 700);
 
-            // Trigger Spotify autoplay by reloading src with autoplay=1
+            // Spotify embeds cannot be forced to autoplay reliably by changing
+            // the iframe URL. The click still counts as a user gesture, so
+            // reload the player with autoplay enabled and start the local
+            // audio immediately.
             const iframe = document.getElementById('spotify-iframe');
-            iframe.src += "&autoplay=1";
-            
-            // Also trigger sound effect / burst
-            createHeartBurst(window.innerWidth / 2, window.innerHeight / 2, 25);
+            try {
+                const url = new URL(iframe.src);
+                url.searchParams.set('autoplay', '1');
+                iframe.src = url.toString();
+            } catch (e) {}
+
             playLoveSound();
+            createHeartBurst(window.innerWidth / 2, window.innerHeight / 2, 25);
         });
 
         // Setup main target date
